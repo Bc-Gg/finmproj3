@@ -26,3 +26,16 @@ if stored_data is not None:
     print(stored_data.head())
 
 
+# Crypto data
+coin_tickers = ['BTCUSDT', 'ETHUSDT', 'SOLUSDT', 
+             'BNBUSDT', 'XRPUSDT', 'DOGEUSDT', 
+             'ADAUSDT', 'TRXUSDT',]
+
+crypto_data_lake = CryptoDataLake()
+
+start_date = "2024-01-01"
+end_date = "2024-11-10"
+interval = "1m"
+
+for ticker in tqdm(coin_tickers, desc="Fetching crypto data"):
+    crypto_data_lake.fetch_and_store_data(ticker, start_date, end_date, interval)
