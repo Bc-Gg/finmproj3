@@ -29,6 +29,13 @@ class DataWorkbench:
             self.store_data(dataset_name, new_data)
             return "Dataset not found. New dataset created"
     
+    def remove_data(self, dataset_name):
+        if dataset_name in self.data_storage:
+            del self.data_storage[dataset_name]
+            return "Dataset removed"
+        
+        return "Dataset not found"
+    
     def transform_data(self, dataset_name, transformation_func, *args, **kwargs):
         data = self.retrieve_data(dataset_name)
         return transformation_func(data, *args, **kwargs) if data else "Dataset not found"
