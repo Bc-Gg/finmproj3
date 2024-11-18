@@ -12,8 +12,11 @@ class DataWorkbench:
     def clean_data(self, dataset_name, clean_func, *args, **kwargs):
         if dataset_name in self.data_storage:
             cleaned_data = clean_func(self.data_storage[dataset_name], *args, **kwargs)
-            self.store_data(dataset_name, cleaned_data)
-            return cleaned_data if cleaned_data else "Data cleaning failed"
+            if cleaned_data:
+                self.store_data(dataset_name, cleaned_data)
+                return cleaned_data
+            else:
+                return "Data cleaning failed"
         
         return "Dataset not found"
     
